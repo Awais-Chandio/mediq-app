@@ -30,6 +30,7 @@ import { useProfileStore } from '../../../store/profileStore';
 import { useTheme } from '../../../hooks/useTheme';
 import { hp, scaleFont, wp } from '../../../utils/responsive';
 import { analyticsService } from '../api/analyticsService';
+import { DeleteAccountLink } from '../../support/DeleteAccountLink';
 
 const AdminManageScreen = () => {
   const { colors, spacing, typography, radius } = useTheme();
@@ -255,6 +256,7 @@ const AdminManageScreen = () => {
           </Card>
         </View>
       </CardFadeIn>
+      <DeleteAccountLink style={{ marginHorizontal: spacing.md, marginBottom: spacing.xl }} />
     </ScreenWrapper>
   );
 };

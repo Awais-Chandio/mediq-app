@@ -11,6 +11,7 @@ import AppButton from "../../../components/ui/AppButton";
 import { CardFadeIn } from "../../../components/animations/CardFadeIn";
 import { Moon, Bell, Shield, Info, ChevronRight, FileText } from "lucide-react-native";
 import type { AppStackParamList } from "../../../navigation/types";
+import { DeleteAccountLink } from "../../support/DeleteAccountLink";
 import { hp, scaleFont, wp } from "../../../utils/responsive";
 
 type NavigationProp = NativeStackNavigationProp<AppStackParamList>;
@@ -96,6 +97,7 @@ const SettingsScreen = () => {
           onPress={handleLogout} 
           style={{ marginTop: spacing.md }}
         />
+        <DeleteAccountLink style={{ marginTop: spacing.sm }} />
       </CardFadeIn>
     </ScreenWrapper>
   );

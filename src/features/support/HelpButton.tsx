@@ -8,6 +8,7 @@ import { Sheet } from '../../components/ui/Sheet';
 import { Skeleton } from '../../components/ui/Skeleton';
 import { toastService } from '../../services/toastService';
 import { formatMobile, useSupportContact, whatsappLink } from './support';
+import { DeleteAccountLink } from './DeleteAccountLink';
 
 /**
  * "Help" in the clinic app's headers: MediQ support on WhatsApp. Google Play:
@@ -63,6 +64,7 @@ export const HelpButton = ({ style }: { style?: StyleProp<ViewStyle> }) => {
               {isError ? "Couldn't load the support number. Check the internet and try again." : "MediQ's support number isn't set up yet."}
             </AppText>
           )}
+          <DeleteAccountLink />
         </View>
       </Sheet>
     </>

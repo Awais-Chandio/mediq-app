@@ -17,6 +17,7 @@ import AnimatedCard from "../../../components/ui/AnimatedCard";
 import { Camera, Settings, Activity, Mail, Phone, Calendar, CheckCircle2, Moon, Shield, FileText, Info, ChevronRight, LogOut } from "lucide-react-native";
 import LinearGradient from "react-native-linear-gradient";
 import type { AppStackParamList } from "../../../navigation/types";
+import { DeleteAccountLink } from "../../support/DeleteAccountLink";
 import { hp, scaleFont, wp } from "../../../utils/responsive";
 import { toastService } from "../../../services/toastService";
 
@@ -371,9 +372,10 @@ const ProfileScreen = () => {
           variant="danger" 
           onPress={handleLogout} 
           style={{ borderRadius: 12 }}
-          containerStyle={{ marginBottom: spacing.xl }}
+          containerStyle={{ marginBottom: spacing.sm }}
           leftIcon={<LogOut size={16} color={colors.onError} />}
         />
+        <DeleteAccountLink style={{ marginBottom: spacing.xl }} />
       </AnimatedCard>
 
       {error ? (

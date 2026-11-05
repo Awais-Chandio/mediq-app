@@ -14,9 +14,12 @@ Package `com.mediq.app`, app name MediQ. Build: `release/android-1.0`.
 - [ ] `SENTRY_DSN` in `.env` (from sentry.io → Project → Client Keys), or ship without crash reports.
 - [ ] Set the support WhatsApp in /admin, and `NEXT_PUBLIC_SUPPORT_EMAIL` in Vercel. The legal pages show them.
 - [ ] Merge and deploy `legal-pages` (mediq-web), then check that `/privacy`, `/terms` and `/delete-account` open on the live site.
-- [ ] Add an in-app "Delete account" link to the profile screens. It can just open
-      `/delete-account`. Play requires an in-app path as well as the web URL.
-- [ ] Create a reviewer account on MediQ Demo Clinic (doctor + receptionist).
+- [x] In-app "Delete account" link (opens `/delete-account`): patient profile and
+      settings, doctor profile, admin System tab, and the Help sheet that owners
+      and receptionists see. Test: `__tests__/deleteAccount.test.tsx`.
+- [x] Reviewer logins on MediQ Demo Clinic (production): a demo doctor and a demo
+      receptionist. Credentials only in `~/mediq-keys/play-reviewer.txt`; paste
+      them into Play Console → App content → App access.
 
 ## 1. Play Console account
 

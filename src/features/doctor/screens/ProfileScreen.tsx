@@ -35,6 +35,7 @@ import ErrorState from '../../../components/ui/ErrorState';
 import { Skeleton } from '../../../components/ui/Skeleton';
 import { doctorSelfProfileSchema, type DoctorSelfProfileData } from '../../../validations/doctorProfileSchema';
 import { useDoctorDashboard } from '../hooks/useDoctorDashboard';
+import { DeleteAccountLink } from '../../support/DeleteAccountLink';
 import { useDoctorAvailability } from '../hooks/useDoctorAvailability';
 import { doctorDisplayName } from '../utils/doctorFormat';
 
@@ -423,6 +424,7 @@ export default function ProfileScreen() {
         textStyle={{ color: colors.error }}
         onPress={handleSignOut}
       />
+      <DeleteAccountLink style={{ marginTop: spacing.sm }} />
     </ScreenWrapper>
   );
 }

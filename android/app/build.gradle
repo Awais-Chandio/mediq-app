@@ -123,9 +123,8 @@ android {
 dependencies {
     // The version of react-native is set by the React Native Gradle Plugin
     implementation("com.facebook.react:react-android")
-    implementation("com.google.firebase:firebase-analytics")
-
-    
+    // No firebase-analytics: the app only uses Firebase for push (messaging)
+    // and auth, so Play's Data safety form has no analytics collection.
 
     if (hermesEnabled.toBoolean()) {
         implementation("com.facebook.react:hermes-android")
