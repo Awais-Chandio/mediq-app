@@ -12,3 +12,10 @@ export const WEB_APP_URL = (Config.WEB_APP_URL?.trim() || 'https://app.mediq.pk'
  */
 export const hisaabUrl = (centerId: string) =>
   `${WEB_APP_URL}/hisaab?center=${encodeURIComponent(centerId)}&from=app`;
+
+/**
+ * "Naya clinic? Register karein" on the login screen: the web sign-up for a
+ * new clinic. `from=app` keeps the web's plan links hidden on that visit
+ * (Google Play: no purchase or payment links from the app).
+ */
+export const clinicOnboardingUrl = () => `${WEB_APP_URL}/onboarding?from=app`;

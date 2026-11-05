@@ -29,6 +29,7 @@ import { hp, scaleFont, wp } from "../../../utils/responsive";
 import { useAuthEntranceAnimation } from "../hooks/useAuthEntranceAnimation";
 import { fixed } from '../../../theme/colors';
 import GoogleIcon from '../../../components/ui/GoogleIcon';
+import { RegisterClinicLink } from './RegisterClinicLink';
 
 type LoginScreenNavigationProp = NativeStackNavigationProp<AuthStackParamList, "Login">;
 
@@ -397,6 +398,9 @@ const LoginScreen = () => {
                                 Don't have an account? <Text style={signUpLinkStyle}>Sign Up</Text>
                             </Text>
                         </Pressable>
+
+                        {/* Clinic owners register on the web */}
+                        <RegisterClinicLink />
                     </Animated.View>
                 </ScrollView>
             </KeyboardAvoidingView>
