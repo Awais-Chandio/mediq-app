@@ -231,7 +231,7 @@ SELECT tests.logout();
 -- ---------------------------------------------------------------------------
 -- Cron
 -- ---------------------------------------------------------------------------
-SELECT set_eq($$SELECT jobname FROM cron.job$$, ARRAY['send-notifications', 'cleanup-stale-appointments', 'prune-notification-outbox', 'expire-unpaid-tokens', 'plan-lifecycle'], 'five cron jobs (2A: expire-unpaid-tokens, 2B: plan-lifecycle)');
+SELECT set_eq($$SELECT jobname FROM cron.job$$, ARRAY['send-notifications', 'cleanup-stale-appointments', 'prune-notification-outbox', 'expire-unpaid-tokens', 'plan-lifecycle', 'prune-cron-history'], 'six cron jobs (2A: expire-unpaid-tokens, 2B: plan-lifecycle, perf: prune-cron-history)');
 SELECT is((SELECT schedule FROM cron.job WHERE jobname = 'send-notifications'), '* * * * *', 'outbox worker every minute');
 UPDATE public.notification_outbox SET status = 'pending', next_attempt_at = now() - interval '1 second', locked_until = NULL
 WHERE id = tests.outbox('doctor_late', 'w5');
