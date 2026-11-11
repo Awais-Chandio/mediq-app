@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>MediQ demo video</title>
+<!-- Rendered frame by frame by render.js. Open in Chrome to preview (plays in
+     real time); add ?portrait for the 9:16 version. -->
+<link rel="stylesheet" href="../demo/frames.css">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; overflow: hidden; background: #000; }
+  #v { position: relative; width: 1920px; height: 1080px; overflow: hidden; font-family: Inter, system-ui, sans-serif; color: #E6F2F3;
+       background: radial-gradient(1300px 800px at 10% 0%, #0E5A62 0%, transparent 60%),
+                   radial-gradient(1000px 700px at 100% 100%, #0A4A57 0%, transparent 55%), var(--deep); }
+  .portrait #v { width: 1080px; height: 1920px; }
+  .layer { position: absolute; inset: 0; opacity: 0; }
+
+  /* intro / outro */
+  .center { display: grid; place-items: center; text-align: center; }
+  .center .logo { font-size: 150px; box-shadow: 0 20px 60px rgba(8, 145, 178, .4); }
+  .center h1 { margin: 34px 0 0; font-size: 110px; font-weight: 800; letter-spacing: -.04em; color: #fff; }
+  .center h2 { margin: 18px auto 0; max-width: 1400px; font-size: 64px; font-weight: 700; letter-spacing: -.025em; line-height: 1.15; color: #fff; }
+  .center h2 span { background: linear-gradient(90deg, #5EEAD4, #22D3EE); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .center p { margin: 26px auto 0; max-width: 1150px; font-size: 40px; line-height: 1.45; color: #B9D3D6; }
+  .soon { display: inline-flex; align-items: center; gap: 16px; margin-top: 40px; padding: 18px 34px; border-radius: 99px;
+          font-size: 34px; font-weight: 700; color: #fff; background: rgba(251, 191, 36, .12); border: 2px solid rgba(251, 191, 36, .5); }
+  .soon i { width: 16px; height: 16px; border-radius: 50%; background: #FBBF24; box-shadow: 0 0 0 9px rgba(251, 191, 36, .18); }
+  .credit { margin-top: 34px; font-size: 26px; color: #8FB3B7; }
+  .portrait .center h1 { font-size: 120px; }
+  .portrait .center h2 { font-size: 64px; max-width: 900px; }
+  .portrait .center p { font-size: 40px; max-width: 880px; }
+
+  /* chapter cards */
+  .chapter { display: grid; place-items: center; background: rgba(6, 42, 47, .92); }
+  .chapter .n { font-size: 40px; font-weight: 700; color: #5EEAD4; letter-spacing: .1em; text-align: center; }
+  .chapter .t { font-size: 104px; font-weight: 800; letter-spacing: -.035em; color: #fff; text-align: center; }
+
+  /* steps */
+  .caption { position: absolute; left: 90px; top: 0; bottom: 0; width: 560px; display: flex; flex-direction: column; justify-content: center; }
+  .caption .ch { font-size: 24px; font-weight: 700; color: #5EEAD4; letter-spacing: .1em; text-transform: uppercase; }
+  .caption h3 { margin: 18px 0 18px; font-size: 62px; line-height: 1.08; font-weight: 800; letter-spacing: -.03em; color: #fff; }
+  .caption p { margin: 0; font-size: 30px; line-height: 1.5; color: #B9D3D6; }
+  .dev { position: absolute; left: 720px; right: 80px; top: 90px; bottom: 110px; display: grid; place-items: center; }
+  .portrait .caption { left: 80px; right: 80px; top: 130px; bottom: auto; width: auto; height: 470px; justify-content: flex-start; }
+  .portrait .caption h3 { font-size: 76px; }
+  .portrait .caption p { font-size: 38px; }
+  .portrait .dev { left: 50px; right: 50px; top: 620px; bottom: 200px; }
+
+  .screen .page { will-change: transform; }
+  .cursor { position: absolute; z-index: 6; width: 44px; height: 44px; margin: -6px 0 0 -8px; pointer-events: none; filter: drop-shadow(0 4px 8px rgba(0, 0, 0, .35)); }
+  .ripple { position: absolute; z-index: 5; width: 90px; height: 90px; margin: -45px 0 0 -45px; border-radius: 50%; border: 5px solid var(--accent); opacity: 0; }
+
+  /* chapter progress chips */
+  .chips { position: absolute; left: 0; right: 0; bottom: 34px; display: flex; justify-content: center; gap: 12px; }
+  .chips span { padding: 9px 18px; border-radius: 99px; font-size: 20px; font-weight: 600; color: #7FA6AA; background: rgba(255, 255, 255, .05); border: 1px solid rgba(255, 255, 255, .08); }
+  .chips span.on { color: #fff; background: rgba(20, 184, 166, .22); border-color: rgba(94, 234, 212, .45); }
+  .portrait .chips { bottom: 90px; flex-wrap: wrap; padding: 0 60px; gap: 10px; }
+  .portrait .chips span { font-size: 22px; }
+  .brandmark { position: absolute; top: 34px; left: 40px; display: flex; align-items: center; gap: 14px; font-size: 30px; font-weight: 800; color: #fff; }
+  .brandmark .logo { font-size: 46px; }
+  .brandmark .chip { margin-left: 6px; padding: 6px 14px; border-radius: 99px; font-size: 18px; font-weight: 700; color: #5EEAD4; background: rgba(20, 184, 166, .16); border: 1px solid rgba(94, 234, 212, .35); }
+  .portrait .brandmark { top: 50px; left: 80px; }
+</style>
+</head>
+<body>
+<div id="v"></div>
+<script src="../demo/steps.js"></script>
+<script>
+const portrait = location.search.includes('portrait');
+if (portrait) document.documentElement.classList.add('portrait');
+const { brand, chapters, steps } = window.MEDIQ;
+const LOGO = '<span class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19V6l7 8 7-8v13"/></svg></span>';
+const CURSOR = '<svg class="cursor" viewBox="0 0 24 24"><path d="M4 2l15 11-6.5 1.2L16 21l-3 1.4-3.4-6.9L4 20z" fill="#fff" stroke="#111" stroke-width="1.4" stroke-linejoin="round"/></svg>';
+
+// The cut: which steps make the video, and for how long.
+const PICK = ['web-01-onboarding-1-account', 'web-03-onboarding-3-doctors', 'web-05-onboarding-5-qr-poster', 'web-07-settings-fees',
+  'web-08-reception-new-walk-in', 'web-09-reception-queue', 'web-10-reception-now-serving',
+  'web-11-patient-join-urdu', 'web-13-patient-pay-fee', 'web-14-patient-pay-online', 'web-16-reception-verify-payment', 'web-17-patient-in-line',
+  'web-19-tv-display', 'web-20-patient-almost-turn', 'web-21-patient-your-turn',
+  'app-12-doctor-dashboard', 'app-14-doctor-now-serving', 'app-15-doctor-prescription',
+  'app-05-owner-today', 'app-08-walk-in-token', 'app-11-late-or-break',
+  'web-23-records'];
+const STEP = 2.9, FADE = 0.4, CHAPTER = 1.3;
+const cut = PICK.map(img => steps.find(s => s.img === img));
+
+// Timeline: [start, end, kind, data]
+const T = [];
+let t = 0;
+const add = (dur, kind, data) => { T.push({ start: t, end: t + dur, kind, data }); t += dur; };
+add(4.2, 'intro');
+add(4.0, 'hook');
+let lastCh = null;
+for (const s of cut) {
+  if (s.ch !== lastCh) { add(CHAPTER, 'chapter', chapters.find(c => c.id === s.ch)); lastCh = s.ch; }
+  add(s.tall ? STEP + 0.9 : STEP, 'step', s);
+}
+add(6.5, 'outro');
+window.DURATION = Math.ceil(t * 10) / 10;
+
+const v = document.getElementById('v');
+const W = portrait ? 1080 : 1920;
+const el = html => { const d = document.createElement('div'); d.innerHTML = html.trim(); return d.firstChild; };
+
+// Build every layer once; renderFrame only changes styles.
+for (const seg of T) {
+  let html;
+  if (seg.kind === 'intro') html = `<div class="layer center"><div>${LOGO}<h1>${brand.name}</h1><h2>${brand.tagline.replace('without', '<span>without').replace(/$/, '</span>')}</h2></div></div>`;
+  if (seg.kind === 'hook') html = `<div class="layer center"><div><h2>Long waits. Crowded benches.<br><span>Nobody knows when it’s their turn.</span></h2><p>MediQ puts the clinic queue on everyone’s phone.</p></div></div>`;
+  if (seg.kind === 'chapter') html = `<div class="layer chapter"><div><div class="n">${String(chapters.indexOf(seg.data) + 1).padStart(2, '0')} · ${seg.data.icon}</div><div class="t">${seg.data.title}</div></div></div>`;
+  if (seg.kind === 'outro') html = `<div class="layer center"><div>${LOGO}<h1>${brand.name}</h1><p>${brand.pitch}</p><div class="soon"><i></i>${brand.statusLine}</div><div class="credit">${brand.credit}</div></div></div>`;
+  if (seg.kind === 'step') {
+    const s = seg.data, ch = chapters.find(c => c.id === s.ch);
+    const page = `<div class="page"><img src="../demo/img/${s.img}.jpg"></div>`;
+    const status = s.frame === 'phone' && s.img.startsWith('web-') ? '<div class="status"><span>9:41</span><span>▂▄▆ ▮</span></div>' : '';
+    const screen = `<div class="screen">${status}${page}${s.hot ? CURSOR + '<div class="ripple"></div>' : ''}</div>`;
+    const frame = s.frame === 'phone' ? `<div class="frame-phone">${screen}</div>`
+      : s.frame === 'tv' ? `<div class="frame-tv"><div class="bezel">${screen}</div><div class="stand"></div></div>`
+      : `<div class="frame-browser"><div class="bar"><i></i><i></i><i></i><div class="addr">MediQ · <b>${s.url || ''}</b></div></div>${screen}</div>`;
+    html = `<div class="layer"><div class="caption"><div class="ch">${ch.icon} ${ch.title}</div><h3>${s.title}</h3><p>${s.body}</p></div><div class="dev">${frame}</div></div>`;
+  }
+  seg.el = el(html);
+  v.appendChild(seg.el);
+}
+const chips = el(`<div class="chips">${chapters.map(c => `<span data-ch="${c.id}">${c.title}</span>`).join('')}</div>`);
+const mark = el(`<div class="brandmark">${LOGO}${brand.name}<span class="chip">${brand.status}</span></div>`);
+v.append(chips, mark);
+
+// Size the device frames to their box (same rules as the demo page).
+function layout() {
+  for (const seg of T) {
+    if (seg.kind !== 'step') continue;
+    const box = seg.el.querySelector('.dev').getBoundingClientRect();
+    const f = seg.el.querySelector('.dev').firstElementChild, s = seg.data;
+    if (s.frame === 'phone') f.style.height = Math.min(box.height, box.width * 19.5 / 9) + 'px';
+    else f.style.width = Math.min(box.width, (box.height - (s.frame === 'tv' ? 42 : 38)) * (s.frame === 'tv' ? 16 / 9 : 16 / 10)) + 'px';
+  }
+}
+
+const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
+const ease = x => x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+const easeOut = x => 1 - Math.pow(1 - x, 3);
+
+function fadeOf(seg, time) {
+  // The next layer (later in the DOM, so on top) fades in while this one is
+  // still fully visible; this one disappears once it's covered.
+  const a = clamp((time - seg.start) / FADE), b = clamp((seg.end + FADE - time) / FADE);
+  if (seg.kind === 'intro') return Math.min(clamp(time / 0.6), b);
+  if (seg.kind === 'outro') return a;
+  return Math.min(a, b);
+}
+
+window.renderFrame = time => {
+  let current = null;
+  for (const seg of T) {
+    const on = time >= seg.start - FADE && time <= seg.end + FADE;
+    const o = on ? fadeOf(seg, time) : 0;
+    seg.el.style.opacity = o;
+    seg.el.style.visibility = o > 0 ? 'visible' : 'hidden';
+    if (time >= seg.start && time < seg.end) current = seg;
+    if (!on) continue;
+    const p = clamp((time - seg.start) / (seg.end - seg.start));
+
+    if (seg.kind === 'intro' || seg.kind === 'outro') {
+      const inner = seg.el.firstChild;
+      inner.style.transform = `translateY(${(1 - easeOut(clamp(p * 3))) * 40}px) scale(${0.96 + 0.04 * easeOut(clamp(p * 3))})`;
+    }
+    if (seg.kind === 'hook' || seg.kind === 'chapter') seg.el.firstChild.style.transform = `translateY(${(1 - easeOut(clamp(p * 2.5))) * 50}px)`;
+    if (seg.kind === 'step') step(seg, p);
+  }
+  // chrome: chips and brand mark only during the walkthrough
+  const inSteps = current && (current.kind === 'step' || current.kind === 'chapter');
+  const chromeO = inSteps ? 1 : 0;
+  chips.style.opacity = mark.style.opacity = chromeO;
+  const ch = current && (current.kind === 'step' ? current.data.ch : current.kind === 'chapter' ? current.data.id : null);
+  for (const c of chips.children) c.classList.toggle('on', c.dataset.ch === ch);
+};
+
+function step(seg, p) {
+  const s = seg.data, L = seg.el;
+  const dev = L.querySelector('.dev').firstElementChild;
+  dev.style.transform = `translateY(${(1 - easeOut(clamp(p * 4))) * 30}px) scale(${0.97 + 0.03 * easeOut(clamp(p * 4))})`;
+  const cap = L.querySelector('.caption');
+  cap.style.transform = `translateX(${portrait ? 0 : (1 - easeOut(clamp(p * 4))) * -30}px) translateY(${portrait ? (1 - easeOut(clamp(p * 4))) * 20 : 0}px)`;
+
+  const screen = L.querySelector('.screen'), page = L.querySelector('.page'), img = page.querySelector('img');
+  const bar = L.querySelector('.status'), top = bar ? bar.offsetHeight : 0;
+  const sh = screen.clientHeight - top, sw = screen.clientWidth, ih = img.clientHeight;
+  // Pan tall pages: to the hotspot if there is one, otherwise to the bottom.
+  const target = s.hot ? clamp(ih * s.hot.y / 100 - sh * 0.6, 0, Math.max(0, ih - sh)) : Math.max(0, ih - sh);
+  const pan = target * ease(clamp((p - 0.12) / 0.5));
+  // Browser shots zoom in a little on the button that gets clicked.
+  const zMax = s.frame === 'browser' && s.hot ? (portrait ? 1.7 : 1.22) : 1;
+  const z = 1 + (zMax - 1) * ease(clamp((p - 0.1) / 0.45));
+  page.style.transformOrigin = s.hot ? `${s.hot.x}% ${s.hot.y}%` : '50% 0';
+  page.style.transform = `translateY(${-pan}px) scale(${z})`;
+
+  if (!s.hot) return;
+  const cur = L.querySelector('.cursor'), rip = L.querySelector('.ripple');
+  const hx = sw * s.hot.x / 100, hy = top + ih * s.hot.y / 100 - pan;
+  const m = ease(clamp((p - 0.35) / 0.35));
+  const x0 = sw * 0.92, y0 = sh * 0.95;
+  const x = x0 + (hx - x0) * m, y = y0 + (hy - y0) * m;
+  const press = clamp((p - 0.74) / 0.16);
+  cur.style.left = x + 'px'; cur.style.top = y + 'px';
+  cur.style.opacity = clamp((p - 0.3) / 0.08);
+  cur.style.transform = `scale(${press > 0 && press < 0.4 ? 0.85 : 1})`;
+  rip.style.left = hx + 'px'; rip.style.top = hy + 'px';
+  rip.style.opacity = press > 0 ? 1 - press : 0;
+  rip.style.transform = `scale(${0.4 + press * 1.4})`;
+}
+
+window.READY = Promise.all([...document.images].map(i => i.complete ? 0 : new Promise(r => { i.onload = i.onerror = r; })))
+  .then(() => document.fonts.ready).then(() => { layout(); window.renderFrame(0); });
+
+// Preview in the browser: play in real time, looping.
+if (!location.search.includes('render')) {
+  window.READY.then(() => {
+    const t0 = performance.now();
+    const tick = () => { window.renderFrame(((performance.now() - t0) / 1000) % window.DURATION); requestAnimationFrame(tick); };
+    tick();
+  });
+}
+</script>
+</body>
+</html>

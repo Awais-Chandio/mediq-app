@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>MediQ social images</title>
+<!-- Every image is one .asset below, at its exact pixel size. render.js
+     screenshots each one into social/<name>.png. Open in Chrome to preview. -->
+<link rel="stylesheet" href="../demo/frames.css">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: 40px; background: #333; font-family: Inter, system-ui, sans-serif; display: flex; flex-direction: column; gap: 40px; align-items: flex-start; }
+  .asset { position: relative; overflow: hidden; color: #E6F2F3;
+           background: radial-gradient(70% 90% at 12% 0%, #0E6B74 0%, transparent 60%),
+                       radial-gradient(60% 80% at 100% 100%, #0A4F5C 0%, transparent 60%), var(--deep); }
+  .asset::after { content: attr(data-name); position: absolute; top: -9999px; }
+  .grid-bg { position: absolute; inset: 0; opacity: .07;
+             background-image: linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px); background-size: 60px 60px; }
+  .row { display: flex; align-items: center; }
+  .brand { display: flex; align-items: center; gap: .32em; font-weight: 800; letter-spacing: -.03em; color: #fff; }
+  .brand .logo { font-size: 1.25em; box-shadow: 0 10px 30px rgba(8, 145, 178, .35); }
+  .grad { background: linear-gradient(90deg, #5EEAD4, #22D3EE); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .soon { display: inline-flex; align-items: center; gap: .6em; padding: .55em 1.1em; border-radius: 99px; font-weight: 700; color: #fff;
+          background: rgba(251, 191, 36, .12); border: 2px solid rgba(251, 191, 36, .55); }
+  .soon i { width: .55em; height: .55em; border-radius: 50%; background: #FBBF24; box-shadow: 0 0 0 .3em rgba(251, 191, 36, .18); }
+  .muted { color: #B9D3D6; }
+  .frame-phone .screen img, .frame-browser .screen img { display: block; width: 100%; }
+  .pill { display: inline-block; padding: .35em .9em; border-radius: 99px; background: rgba(20, 184, 166, .16); border: 1px solid rgba(94, 234, 212, .35); color: #5EEAD4; font-weight: 700; }
+</style>
+</head>
+<body>
+
+<!-- Profile picture: FB, Instagram, LinkedIn, X, YouTube, TikTok (shown as a circle) -->
+<div class="asset" data-name="profile-1080x1080" style="width:1080px;height:1080px;display:grid;place-items:center;background:linear-gradient(135deg,#0E7C86,#0891B2)">
+  <svg viewBox="0 0 24 24" width="560" height="560" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19V6l7 8 7-8v13"/></svg>
+</div>
+
+<!-- Facebook page cover (shown 820×312 on desktop, cropped to the middle on phones) -->
+<div class="asset" data-name="facebook-cover-1640x624" style="width:1640px;height:624px">
+  <div class="grid-bg"></div>
+  <div style="position:absolute;left:330px;top:120px;width:640px">
+    <div class="brand" style="font-size:64px"><span class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19V6l7 8 7-8v13"/></svg></span>MediQ</div>
+    <div style="margin-top:26px;font-size:46px;font-weight:800;line-height:1.1;letter-spacing:-.03em;color:#fff">Clinic queues <span class="grad">without the crowded waiting room</span></div>
+    <div class="soon" style="margin-top:30px;font-size:24px"><i></i>Coming soon</div>
+  </div>
+  <div class="frame-browser" style="position:absolute;left:1010px;top:110px;width:700px;transform:rotate(-3deg)"><div class="bar"><i></i><i></i><i></i><div class="addr">MediQ · <b>Reception</b></div></div><div class="screen"><img src="../demo/img/web-22-reception-busy.jpg"></div></div>
+  <div class="frame-phone" style="position:absolute;left:1150px;top:170px;height:520px;transform:rotate(4deg)"><div class="screen"><div class="status"><span>9:41</span><span>▂▄▆ ▮</span></div><img src="../demo/img/web-20-patient-almost-turn.jpg"></div></div>
+</div>
+
+<!-- LinkedIn page banner -->
+<div class="asset" data-name="linkedin-banner-1584x396" style="width:1584px;height:396px">
+  <div class="grid-bg"></div>
+  <div style="position:absolute;left:470px;top:72px;width:760px">
+    <div style="font-size:46px;font-weight:800;letter-spacing:-.03em;color:#fff;line-height:1.12">Clinic queues<br><span class="grad">without the crowded waiting room</span></div>
+    <div class="row" style="gap:18px;margin-top:26px;font-size:22px"><span class="soon"><i></i>Coming soon</span><span class="muted">QR tokens · live queue · fees · doctor app</span></div>
+  </div>
+  <div class="frame-phone" style="position:absolute;right:120px;top:40px;height:520px;transform:rotate(6deg)"><div class="screen"><div class="status"><span>9:41</span><span>▂▄▆ ▮</span></div><img src="../demo/img/web-17-patient-in-line.jpg"></div></div>
+</div>
+
+<!-- X (Twitter) header -->
+<div class="asset" data-name="x-header-1500x500" style="width:1500px;height:500px">
+  <div class="grid-bg"></div>
+  <div style="position:absolute;left:520px;top:100px">
+    <div class="brand" style="font-size:54px"><span class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19V6l7 8 7-8v13"/></svg></span>MediQ</div>
+    <div style="margin-top:20px;font-size:40px;font-weight:800;letter-spacing:-.03em;line-height:1.15;color:#fff">Your turn, <span class="grad">on your phone.</span></div>
+    <div class="soon" style="margin-top:26px;font-size:22px"><i></i>Coming soon</div>
+  </div>
+  <div class="frame-tv" style="position:absolute;right:70px;top:120px;width:480px;transform:rotate(-3deg)"><div class="bezel"><div class="screen"><img src="../demo/img/web-19-tv-display.jpg" style="width:100%;display:block"></div></div></div>
+</div>
+
+<!-- YouTube channel banner (2560×1440; text and logo stay inside the 1546×423 safe area) -->
+<div class="asset" data-name="youtube-banner-2560x1440" style="width:2560px;height:1440px">
+  <div class="grid-bg"></div>
+  <div style="position:absolute;left:507px;top:508px;width:1546px;height:423px;display:flex;align-items:center;justify-content:space-between">
+    <div>
+      <div class="brand" style="font-size:84px"><span class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19V6l7 8 7-8v13"/></svg></span>MediQ</div>
+      <div style="margin-top:22px;font-size:58px;font-weight:800;letter-spacing:-.03em;color:#fff">Clinic queues <span class="grad">without the waiting room</span></div>
+    </div>
+    <div class="soon" style="font-size:34px"><i></i>Coming soon</div>
+  </div>
+  <div class="frame-browser" style="position:absolute;left:180px;top:80px;width:760px;transform:rotate(-4deg);opacity:.55"><div class="bar"><i></i><i></i><i></i><div class="addr">MediQ · <b>Reception</b></div></div><div class="screen"><img src="../demo/img/web-09-reception-queue.jpg"></div></div>
+  <div class="frame-browser" style="position:absolute;right:160px;bottom:60px;width:760px;transform:rotate(3deg);opacity:.55"><div class="bar"><i></i><i></i><i></i><div class="addr">MediQ · <b>Records</b></div></div><div class="screen"><img src="../demo/img/web-23-records.jpg"></div></div>
+</div>
+
+<!-- Instagram / Facebook post: coming soon -->
+<div class="asset" data-name="post-coming-soon-1080x1080" style="width:1080px;height:1080px">
+  <div class="grid-bg"></div>
+  <div style="position:absolute;left:80px;top:96px;width:520px">
+    <div class="brand" style="font-size:50px"><span class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19V6l7 8 7-8v13"/></svg></span>MediQ</div>
+    <div style="margin-top:56px;font-size:74px;font-weight:800;line-height:1.02;letter-spacing:-.04em;color:#fff">Your turn,<br><span class="grad">on your phone.</span></div>
+    <div class="muted" style="margin-top:28px;font-size:30px;line-height:1.45">Scan the QR at the clinic, get a token and come in when it’s your turn.</div>
+    <div class="soon" style="margin-top:44px;font-size:30px"><i></i>Coming soon</div>
+  </div>
+  <div class="frame-phone" style="position:absolute;right:70px;top:150px;height:840px;transform:rotate(5deg)"><div class="screen"><div class="status"><span>9:41</span><span>▂▄▆ ▮</span></div><img src="../demo/img/web-20-patient-almost-turn.jpg"></div></div>
+</div>
+
+<!-- Instagram portrait post: how it works -->
+<div class="asset" data-name="post-how-it-works-1080x1350" style="width:1080px;height:1350px">
+  <div class="grid-bg"></div>
+  <div style="position:absolute;left:80px;right:80px;top:80px">
+    <div class="pill" style="font-size:24px">How MediQ works</div>
+    <div style="margin-top:26px;font-size:68px;font-weight:800;line-height:1.05;letter-spacing:-.035em;color:#fff">No more waiting<br><span class="grad">on the clinic bench</span></div>
+  </div>
+  <div style="position:absolute;left:60px;right:60px;top:400px;display:grid;grid-template-columns:repeat(3,1fr);gap:28px">
+    <div><div class="frame-phone" style="height:560px;margin:0 auto"><div class="screen"><div class="status"><span>9:41</span><span>▮</span></div><img src="../demo/img/web-12-patient-join-english.jpg"></div></div>
+      <div style="margin-top:30px;font-size:30px;font-weight:800;color:#fff">1 · Scan the QR</div><div class="muted" style="font-size:22px;margin-top:8px;line-height:1.4">Name and number. No app needed.</div></div>
+    <div><div class="frame-phone" style="height:560px;margin:0 auto"><div class="screen"><div class="status"><span>9:41</span><span>▮</span></div><img src="../demo/img/web-17-patient-in-line.jpg"></div></div>
+      <div style="margin-top:30px;font-size:30px;font-weight:800;color:#fff">2 · Get your token</div><div class="muted" style="font-size:22px;margin-top:8px;line-height:1.4">See how many people are ahead.</div></div>
+    <div><div class="frame-phone" style="height:560px;margin:0 auto"><div class="screen"><div class="status"><span>9:41</span><span>▮</span></div><img src="../demo/img/web-21-patient-your-turn.jpg"></div></div>
+      <div style="margin-top:30px;font-size:30px;font-weight:800;color:#fff">3 · Walk in on time</div><div class="muted" style="font-size:22px;margin-top:8px;line-height:1.4">We tell you when it’s your turn.</div></div>
+  </div>
+  <div style="position:absolute;left:80px;right:80px;bottom:70px;display:flex;align-items:center;justify-content:space-between">
+    <div class="brand" style="font-size:40px"><span class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19V6l7 8 7-8v13"/></svg></span>MediQ</div>
+    <div class="soon" style="font-size:26px"><i></i>Coming soon</div>
+  </div>
+</div>
+
+<!-- Instagram / Facebook post: for clinics -->
+<div class="asset" data-name="post-for-clinics-1080x1080" style="width:1080px;height:1080px">
+  <div class="grid-bg"></div>
+  <div style="position:absolute;left:80px;right:80px;top:80px">
+    <div class="pill" style="font-size:24px">For clinics</div>
+    <div style="margin-top:24px;font-size:64px;font-weight:800;line-height:1.05;letter-spacing:-.035em;color:#fff">A calm front desk.<br><span class="grad">One live queue.</span></div>
+  </div>
+  <div class="frame-browser" style="position:absolute;left:130px;top:350px;width:820px"><div class="bar"><i></i><i></i><i></i><div class="addr">MediQ · <b>Reception</b></div></div><div class="screen"><img src="../demo/img/web-16-reception-verify-payment.jpg"></div></div>
+  <div style="position:absolute;left:80px;right:80px;bottom:60px;display:flex;align-items:center;justify-content:space-between">
+    <div class="muted" style="font-size:26px">Tokens · fees · TV display · doctor app</div>
+    <div class="soon" style="font-size:26px"><i></i>Coming soon</div>
+  </div>
+</div>
+
+<!-- Story / Status (Instagram, Facebook, WhatsApp) -->
+<div class="asset" data-name="story-coming-soon-1080x1920" style="width:1080px;height:1920px">
+  <div class="grid-bg"></div>
+  <div style="position:absolute;left:0;right:0;top:230px;text-align:center">
+    <div class="brand" style="font-size:72px;justify-content:center"><span class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19V6l7 8 7-8v13"/></svg></span>MediQ</div>
+    <div style="margin:46px auto 0;max-width:900px;font-size:84px;font-weight:800;line-height:1.04;letter-spacing:-.04em;color:#fff">Clinic queues<br><span class="grad">without the waiting room</span></div>
+  </div>
+  <div class="frame-phone" style="position:absolute;left:50%;top:760px;height:860px;transform:translateX(-50%)"><div class="screen"><div class="status"><span>9:41</span><span>▂▄▆ ▮</span></div><img src="../demo/img/web-21-patient-your-turn.jpg"></div></div>
+  <div style="position:absolute;left:0;right:0;top:1680px;text-align:center"><span class="soon" style="font-size:40px"><i></i>Coming soon</span></div>
+</div>
+
+<!-- Link preview (Open Graph): portfolio page, WhatsApp, LinkedIn, Facebook -->
+<div class="asset" data-name="og-image-1200x630" style="width:1200px;height:630px">
+  <div class="grid-bg"></div>
+  <div style="position:absolute;left:70px;top:90px;width:560px">
+    <div class="brand" style="font-size:48px"><span class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19V6l7 8 7-8v13"/></svg></span>MediQ</div>
+    <div style="margin-top:34px;font-size:54px;font-weight:800;line-height:1.06;letter-spacing:-.035em;color:#fff">Clinic queues <span class="grad">without the crowded waiting room</span></div>
+    <div class="row" style="gap:16px;margin-top:34px;font-size:24px"><span class="soon"><i></i>Coming soon</span><span class="muted">Interactive demo</span></div>
+  </div>
+  <div class="frame-browser" style="position:absolute;left:700px;top:90px;width:640px;transform:rotate(-3deg)"><div class="bar"><i></i><i></i><i></i><div class="addr">MediQ · <b>Reception</b></div></div><div class="screen"><img src="../demo/img/web-10-reception-now-serving.jpg"></div></div>
+  <div class="frame-phone" style="position:absolute;left:880px;top:250px;height:440px;transform:rotate(5deg)"><div class="screen"><div class="status"><span>9:41</span><span>▮</span></div><img src="../demo/img/web-17-patient-in-line.jpg"></div></div>
+</div>
+
+</body>
+</html>

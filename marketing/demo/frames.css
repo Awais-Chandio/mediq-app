@@ -1,0 +1,83 @@
+/* Brand tokens (from src/theme/colors.ts and mediq-web) and the device frames
+   used by both the interactive demo and the video. */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --primary: #0E7C86;
+  --primary-2: #0891B2;
+  --primary-dark: #0B4F55;
+  --deep: #062A2F;
+  --mint: #14B8A6;
+  --ink: #0F172A;
+  --muted: #64748B;
+  --paper: #F4F8F9;
+  --accent: #E8613C;
+}
+
+/* Browser window (1440×900 screenshots) */
+.frame-browser {
+  width: 100%; border-radius: 14px; overflow: hidden; background: #fff;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, .35), 0 0 0 1px rgba(255, 255, 255, .08);
+}
+.frame-browser .bar {
+  display: flex; align-items: center; gap: 8px; height: 38px; padding: 0 14px;
+  background: #E9EEF0; border-bottom: 1px solid #D5DDE0;
+}
+.frame-browser .bar i { width: 11px; height: 11px; border-radius: 50%; background: #F87171; }
+.frame-browser .bar i:nth-child(2) { background: #FBBF24; }
+.frame-browser .bar i:nth-child(3) { background: #34D399; }
+.frame-browser .addr {
+  flex: 1; max-width: 420px; margin: 0 auto; height: 24px; border-radius: 12px; background: #fff;
+  font: 500 12px/24px Inter, system-ui, sans-serif; color: var(--muted); text-align: center;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.frame-browser .addr b { color: var(--ink); font-weight: 600; }
+.frame-browser .screen { aspect-ratio: 16 / 10; }
+
+/* Phone (390×844 web shots and 1280×2856 Android shots) */
+.frame-phone {
+  height: 100%; aspect-ratio: 9 / 19.5; padding: 12px; border-radius: 48px; background: #0B0F14;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, .4), inset 0 0 0 2px #2A3038, 0 0 0 1px rgba(255, 255, 255, .06);
+  position: relative;
+}
+.frame-phone::before {
+  content: ''; position: absolute; top: 22px; left: 50%; width: 22%; height: 18px; transform: translateX(-50%);
+  border-radius: 12px; background: #0B0F14; z-index: 3;
+}
+.frame-phone .screen { height: 100%; border-radius: 37px; }
+/* Web pages shown in a phone get a status bar (Android shots already have one). */
+.frame-phone .status {
+  position: relative; z-index: 2; height: 44px; padding: 0 26px 0 30px; display: flex; align-items: center; justify-content: space-between;
+  background: #F4F8F9; font: 600 15px Inter, system-ui, sans-serif; color: #0F172A;
+}
+.frame-phone .status span:last-child { letter-spacing: 2px; font-size: 12px; }
+.screen .status + .scroller { top: 44px; }
+
+/* TV (1920×1080) */
+.frame-tv { width: 100%; }
+.frame-tv .bezel { padding: 12px; border-radius: 14px; background: #111; box-shadow: 0 30px 80px rgba(0, 0, 0, .45); }
+.frame-tv .screen { aspect-ratio: 16 / 9; border-radius: 4px; }
+.frame-tv .stand { width: 26%; height: 18px; margin: 0 auto; background: linear-gradient(#222, #111); clip-path: polygon(12% 0, 88% 0, 100% 100%, 0 100%); }
+
+.screen { position: relative; overflow: hidden; background: #fff; }
+.screen .scroller { position: absolute; inset: 0; overflow-y: auto; scrollbar-width: none; }
+.screen .scroller::-webkit-scrollbar { display: none; }
+.screen .page { position: relative; }
+.screen img { display: block; width: 100%; height: auto; }
+
+/* Hotspot: the button the next step clicks */
+.hot {
+  position: absolute; width: 46px; height: 46px; margin: -23px 0 0 -23px; border-radius: 50%;
+  background: rgba(232, 97, 60, .25); border: 3px solid var(--accent); cursor: pointer; z-index: 4;
+}
+.hot::after {
+  content: ''; position: absolute; inset: -3px; border-radius: 50%; border: 3px solid var(--accent);
+  animation: ping 1.6s ease-out infinite;
+}
+@keyframes ping { from { transform: scale(1); opacity: .9 } to { transform: scale(2.4); opacity: 0 } }
+
+.logo {
+  display: inline-grid; place-items: center; width: 1em; height: 1em; border-radius: .26em;
+  background: linear-gradient(135deg, var(--primary), var(--primary-2));
+}
+.logo svg { width: 62%; height: 62%; }
