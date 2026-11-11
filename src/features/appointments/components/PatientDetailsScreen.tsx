@@ -1,19 +1,16 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { View, StyleSheet, Text, Pressable, ScrollView, TextInput, Alert, BackHandler } from 'react-native';
+import { View, StyleSheet, Text, Pressable, ScrollView, Alert } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import type { RouteProp } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { Clock, User, Phone, Mail } from 'lucide-react-native';
+import { Clock } from 'lucide-react-native';
 import { ChevronLeft } from '../../../components/ui/DirectionalIcons';
 import ScreenWrapper from '../../../components/ui/ScreenWrapper';
 import AppButton from '../../../components/ui/AppButton';
-import Card from '../../../components/ui/Card';
 import AppInput from '../../../components/ui/AppInput';
 import { useTheme } from '../../../hooks/useTheme';
 import { supabase } from '../../../lib/supabase';
-import { useAuthStore } from '../../../store/authStore';
 import { useProfileStore } from '../../../store/profileStore';
-import { scaleFont, wp, hp } from '../../../utils/responsive';
 import type { AppStackParamList } from '../../../navigation/types';
 import { logger } from '../../../utils/logger';
 
@@ -27,7 +24,6 @@ const PatientDetailsScreen = () => {
 
   const { lockId, doctorId, centerId, serviceId, selectedDate, slot, expiryTime } = route.params;
 
-  const user = useAuthStore(state => state.user);
   const profile = useProfileStore(state => state.profile);
 
   const [patientName, setPatientName] = useState('');
@@ -59,6 +55,7 @@ const PatientDetailsScreen = () => {
     }, 1000);
 
     return () => clearInterval(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- only re-run when the listed values change
   }, [expiryTime]);
 
   const handleTimeout = async () => {
@@ -78,7 +75,7 @@ const PatientDetailsScreen = () => {
 
   // Release slot on back
   useEffect(() => {
-    const unsubscribe = navigation.addListener('beforeRemove', (e) => {
+    const unsubscribe = navigation.addListener('beforeRemove', () => {
       if (shouldReleaseRef.current) {
         supabase.rpc('release_slot', { p_lock_id: lockId }).then(({ error }) => {
           if (error) logger.warn('Error releasing slot:', error);

@@ -14,7 +14,7 @@ import {
 } from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import type { RouteProp } from "@react-navigation/native";
-import { Lock, ArrowLeft, RefreshCw, Check } from "lucide-react-native";
+import { ArrowLeft, RefreshCw, Check } from "lucide-react-native";
 import { LinearGradient } from "react-native-linear-gradient";
 import Animated, { 
     useSharedValue, 
@@ -109,6 +109,7 @@ const OTPVerificationScreen = () => {
         if (otpCode.length === 6) {
             handleVerifyOTP();
         }
+      // eslint-disable-next-line react-hooks/exhaustive-deps -- only re-run when the listed values change
     }, [otpCode]);
 
     const handleVerifyOTP = async () => {

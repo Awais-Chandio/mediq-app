@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import { View, Animated, StyleSheet, Easing } from 'react-native';
-import Svg, { Circle, Path, Rect, G, Defs, LinearGradient, Stop } from 'react-native-svg';
+import Svg, { Circle, Path, Defs, LinearGradient, Stop } from 'react-native-svg';
 import { useTheme } from '../../hooks/useTheme';
-import { scaleFont, wp, hp } from '../../utils/responsive';
+import { hp } from '../../utils/responsive';
 
 export const DoctorConsultationAnimation = () => {
   const { colors, isDarkMode } = useTheme();
@@ -85,6 +85,7 @@ export const DoctorConsultationAnimation = () => {
       });
     };
     runChatAnimation();
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- only re-run when the listed values change
   }, []);
 
   return (

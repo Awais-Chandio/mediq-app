@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { View, Animated, StyleSheet, Easing, Text } from 'react-native';
-import Svg, { Circle, Path, G, Defs, LinearGradient, Stop } from 'react-native-svg';
+import Svg, { Circle, Path, Defs, LinearGradient, Stop } from 'react-native-svg';
 import { useTheme } from '../../hooks/useTheme';
 import { scaleFont, wp, hp } from '../../utils/responsive';
 
@@ -57,6 +57,7 @@ export const QueueTrackingAnimation = () => {
       });
     };
     runNumLoop();
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- only re-run when the listed values change
   }, []);
 
   // Interpolations

@@ -4,14 +4,12 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 import type { RouteProp } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { Calendar as CalendarIcon, Clock } from 'lucide-react-native';
-import { ChevronLeft, ChevronRight } from '../../../components/ui/DirectionalIcons';
+import { ChevronLeft } from '../../../components/ui/DirectionalIcons';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import ScreenWrapper from '../../../components/ui/ScreenWrapper';
-import AppButton from '../../../components/ui/AppButton';
 import Card from '../../../components/ui/Card';
 import { useTheme } from '../../../hooks/useTheme';
 import { supabase } from '../../../lib/supabase';
-import { scaleFont, wp, hp } from '../../../utils/responsive';
 import { formatAppointmentDateInput, isPastAppointmentSlot } from '../utils/appointmentTime';
 import type { AppStackParamList } from '../../../navigation/types';
 import { doctorService } from '../../../services/doctorService';
@@ -83,6 +81,7 @@ const SelectSlotScreen = () => {
 
   useEffect(() => {
     fetchDoctorInfo();
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- only re-run when the listed values change
   }, [doctorId]);
 
   useEffect(() => {

@@ -1,4 +1,3 @@
-import { supabase } from '../lib/supabase';
 import type { AppointmentFull, AppointmentStatus } from '../types/appointment';
 
 export const getAppointmentStatusState = (

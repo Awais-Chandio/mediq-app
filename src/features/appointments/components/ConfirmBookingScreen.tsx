@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useMemo } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { View, StyleSheet, Text, Pressable, ScrollView, Alert, ActivityIndicator } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import type { RouteProp } from '@react-navigation/native';
@@ -52,6 +52,7 @@ const ConfirmBookingScreen = () => {
     }, 1000);
 
     return () => clearInterval(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- only re-run when the listed values change
   }, [expiryTime]);
 
   const handleTimeout = async () => {
@@ -70,7 +71,7 @@ const ConfirmBookingScreen = () => {
   };
 
   useEffect(() => {
-    const unsubscribe = navigation.addListener('beforeRemove', (e) => {
+    const unsubscribe = navigation.addListener('beforeRemove', () => {
       if (shouldReleaseRef.current) {
         supabase.rpc('release_slot', { p_lock_id: lockId }).then(({ error }) => {
           if (error) logger.warn('Error releasing slot:', error);
@@ -102,6 +103,7 @@ const ConfirmBookingScreen = () => {
 
   useEffect(() => {
     loadDetails();
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- only re-run when the listed values change
   }, [doctorId, centerId]);
 
   const formatTimeLeft = (seconds: number) => {

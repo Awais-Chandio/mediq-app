@@ -9,12 +9,11 @@ import {
     KeyboardAvoidingView,
     Platform,
     ScrollView,
-    Image,
     StatusBar,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { Mail, Lock, User, ArrowLeft, ArrowRight, CheckCircle2, Activity } from "lucide-react-native";
+import { Mail, Lock, User, ArrowLeft, CheckCircle2, Activity } from "lucide-react-native";
 import { LinearGradient } from "react-native-linear-gradient";
 import { useTheme } from "../../../hooks/useTheme";
 import ScreenWrapper from "../../../components/ui/ScreenWrapper";
@@ -34,7 +33,7 @@ type SignupScreenNavigationProp = NativeStackNavigationProp<AuthStackParamList, 
 const { height: SCREEN_HEIGHT } = Dimensions.get('window');
 
 const SignupScreen = () => {
-    const { colors, spacing, radius, typography, isDarkMode } = useTheme();
+    const { colors, spacing, radius, isDarkMode } = useTheme();
     const navigation = useNavigation<SignupScreenNavigationProp>();
 
     // Step state: 1 = Name/Email, 2 = Password/Confirm

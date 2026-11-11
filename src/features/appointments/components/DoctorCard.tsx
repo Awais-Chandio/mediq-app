@@ -1,13 +1,13 @@
 import React from 'react';
 import { View, StyleSheet, Text, Image } from 'react-native';
-import { Stethoscope, Calendar, Clock, Award, MapPin } from 'lucide-react-native';
+import { Stethoscope, Calendar, Award, MapPin } from 'lucide-react-native';
 import Card from '../../../components/ui/Card';
 import AppButton from '../../../components/ui/AppButton';
 import { useTheme } from '../../../hooks/useTheme';
 import AvailabilityBadge from '../../../components/AvailabilityBadge';
 import { StarRating } from '../../../components/ui/StarRating';
 import type { Doctor, DoctorAvailability } from '../../../types/doctor';
-import { scaleFont, wp } from '../../../utils/responsive';
+import { scaleFont } from '../../../utils/responsive';
 import { getDoctorMockData } from '../../../utils/doctorMockHelper';
 
 interface DoctorCardProps {

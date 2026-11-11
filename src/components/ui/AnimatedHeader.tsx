@@ -2,7 +2,6 @@ import React from 'react';
 import { View, StyleSheet, Text, Pressable, StyleProp, ViewStyle } from 'react-native';
 import { Bell, MapPin } from 'lucide-react-native';
 import { useTheme } from '../../hooks/useTheme';
-import { scaleFont } from '../../utils/responsive';
 import ProfileAvatar from './ProfileAvatar';
 import IconButton from './IconButton';
 

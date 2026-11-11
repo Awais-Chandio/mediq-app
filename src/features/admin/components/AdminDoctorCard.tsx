@@ -1,10 +1,9 @@
 import React from 'react';
 import { View, StyleSheet, Text, Image, Pressable } from 'react-native';
-import { Stethoscope, CheckCircle, XCircle, Edit2, Trash2, ShieldAlert } from 'lucide-react-native';
+import { Stethoscope, Edit2, Trash2 } from 'lucide-react-native';
 import Card from '../../../components/ui/Card';
 import Badge from '../../../components/ui/Badge';
 import { useTheme } from '../../../hooks/useTheme';
-import { scaleFont, wp, hp } from '../../../utils/responsive';
 
 interface DoctorCardProps {
   doctor: any;

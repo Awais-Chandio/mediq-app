@@ -106,7 +106,7 @@ export const fetchDashboardStats = async (userId: string) => {
         } else {
           dateLabel = apptDate.toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
         }
-      } catch (e) {
+      } catch {
         dateLabel = 'Recent';
       }
 

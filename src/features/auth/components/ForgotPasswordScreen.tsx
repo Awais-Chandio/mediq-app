@@ -37,7 +37,7 @@ const isValidEmail = (value: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
 const { height: SCREEN_HEIGHT } = Dimensions.get('window');
 
 const ForgotPasswordScreen = () => {
-    const { colors, spacing, radius, typography, isDarkMode } = useTheme();
+    const { colors, spacing, radius, isDarkMode } = useTheme();
     const navigation = useNavigation<ForgotPasswordNavigationProp>();
     const [email, setEmail] = useState("");
     const [isLoading, setIsLoading] = useState(false);

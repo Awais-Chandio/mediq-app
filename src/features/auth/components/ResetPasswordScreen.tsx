@@ -9,12 +9,12 @@ import { useAuthStore } from "../../../store/authStore";
 import { toastService } from "../../../services/toastService";
 import { useTheme } from "../../../hooks/useTheme";
 import { Lock } from "lucide-react-native";
-import { hp, scaleFont, wp } from "../../../utils/responsive";
+import { wp } from "../../../utils/responsive";
 
 const MIN_PASSWORD_LENGTH = 6;
 
 const ResetPasswordScreen = () => {
-  const { colors, spacing, typography, radius } = useTheme();
+  const { colors, spacing, typography } = useTheme();
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);

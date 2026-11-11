@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { View, StyleSheet, Text, Pressable, Platform } from "react-native";
+import { View, StyleSheet, Text, Pressable } from "react-native";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigation } from "@react-navigation/native";
@@ -16,7 +16,7 @@ import { useProfileStore } from "../../../store/profileStore";
 import { useToastStore } from "../../../store/toastStore";
 import { profileSchema, type ProfileFormData } from "../../../validations/profileSchema";
 import { useTheme } from "../../../hooks/useTheme";
-import { scaleFont, wp, hp } from "../../../utils/responsive";
+import { scaleFont, wp } from "../../../utils/responsive";
 import { logger } from '../../../utils/logger';
 
 const EditProfileScreen = () => {
@@ -24,7 +24,7 @@ const EditProfileScreen = () => {
   const { user } = useAuth();
   const { profile, isLoading, isUploadingAvatar, error, fetchProfile, updateProfile, uploadAvatar } =
     useProfileStore();
-  const { colors, spacing, typography, radius } = useTheme();
+  const { colors, spacing, typography } = useTheme();
   const { showToast } = useToastStore();
 
   const {

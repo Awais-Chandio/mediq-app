@@ -5,7 +5,7 @@ import type { RouteProp } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import QRCode from 'react-native-qrcode-svg';
 import { CheckCircle2, Home } from 'lucide-react-native';
-import { ArrowRight, ChevronRight } from '../../../components/ui/DirectionalIcons';
+import { ArrowRight } from '../../../components/ui/DirectionalIcons';
 import ScreenWrapper from '../../../components/ui/ScreenWrapper';
 import AppButton from '../../../components/ui/AppButton';
 import Card from '../../../components/ui/Card';
