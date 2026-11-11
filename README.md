@@ -1,5 +1,7 @@
 # MediQ
 
+[![CI](https://github.com/Awais-Chandio/mediq-app/actions/workflows/ci.yml/badge.svg)](https://github.com/Awais-Chandio/mediq-app/actions/workflows/ci.yml)
+
 MediQ is a React Native mobile app for appointment booking and queue
 management. The app uses React Navigation for auth and app flows, Zustand for
 local state, and Supabase for backend auth/profile services.
